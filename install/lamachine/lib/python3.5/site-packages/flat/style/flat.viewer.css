@@ -1,0 +1,362 @@
+.F:hover {
+    cursor: pointer;
+}
+.F {
+    vertical-align: bottom;
+}
+div.div, div.p {
+    display: block;
+    margin-bottom: 5px;
+}
+div.s, div.w,div.part,div.s div.quote,div.p div.quote {
+    display: inline-block;
+}
+span.ab { /*annotation box*/
+    display: none;
+    border-top: #888 1px dotted;
+    margin-top: 5px;
+    font-size: 75%;
+    color: #5c6280;
+}
+span.ab>span, span.ab>span.abc>span { /*items/rows in annotation box*/
+    display: block;
+    margin-right: 4px;
+}
+span.ab span.pos{
+    color: #5c6280;
+}
+span.ab span.lemma{
+    color: #7a805c;
+}
+span.ab span.su{
+    color: #528ed2;
+}
+span.ab span.dependency {
+    color: #854587;
+}
+span.str {
+    border-bottom: 1px #696487 solid;
+}
+span.correction {
+    border-bottom: 1px #ff0000 solid;
+}
+span.str:hover {
+    border: 1px #2400ff dashed;
+}
+span.dependency span.headtext {
+    font-style: italic;
+}
+span.ab>span.abc{ /* annotation box container (for a specific annotation type that spans vertical space) */
+    vertical-align: bottom;
+}
+div.persp { /*perspective */
+    display: block;
+    padding-top:5px;
+    padding-bottom: 5px;
+    border: 1px dashed #ccc;
+    margin-top: 2px;
+    margin-bottom: 2px;
+}
+div.persp:hover { /*perspective */
+    background: #dee6e8;
+    border: 1px dashed #356a77;
+}
+
+div.head {
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+
+span.lbl {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+div.focustype span.lbl {
+    background: #bfbfbf;
+}
+
+div.undofocustype span.lbl {
+    background: transparent;
+}
+div.highlighted span.lbl {
+    border: red 2px solid !important;
+    font-weight: bold;
+}
+
+div.class1 span.lbl, div#class1legend {
+    background: #b4e0aa; /*green*/
+}
+div.class2 span.lbl, div#class2legend {
+    background: #aaace0; /*blue */
+}
+div.class3 span.lbl, div#class3legend {
+    background: #e19898; /*red*/
+}
+div.class4 span.lbl, div#class4legend {
+    background: #e1e098; /*yellow */
+}
+div.class5 span.lbl, div#class5legend {
+    background: #98e1dd; /*cyan*/
+}
+div.class6 span.lbl, div#class6legend {
+    background: #dcc6da; /*pink*/
+}
+div.class7 span.lbl, div#class7legend {
+    background: #e1c398; /*orange*/
+}
+div.classother span.lbl, div#classotherlegend {
+    background: #ccc; /*gray*/
+}
+div.hover span.lbl, div.hover>span.ab {
+    background: black;
+    color: yellow;
+}
+div#connectioninfo {
+    position: fixed;
+    right: 10px;
+    top: 50px;
+    background: transparent;
+    font-size: 24px;
+    color: #356a77;
+}
+div#legend {
+    display: none;
+    background: transparent;
+    font-size: 9px;
+    margin-top: 25px;
+}
+div#legend .colorbox {
+    display: inline-block;
+    min-width: 16px;
+    min-height: 16px;
+    border: 1px #444 solid;
+    border-radius: 16px;
+}
+div#legend span {
+    display: inline-block;
+}
+
+div#info {
+    position: absolute;
+    display: none;
+    width: 480px;
+    min-height: 25px;
+    opacity: 0.95;
+    background: #b9d8d9;
+    padding: 2px;
+    margin: 5px;
+    text-align: left;
+    border: #30677c 1px solid;
+}
+div#info table {
+    width: 100%;
+    table-layout:fixed;
+}
+div#info th {
+    width: 44%;
+    font-weight: bold;
+    vertical-align: top;
+}
+div#viewer th {
+    vertical-align: top;
+}
+div#info th span.setname {
+    font-weight: normal;
+    font-size: 8pt;
+    padding-left: 10px;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+div#info td {
+    width: 55%;
+    font-style: italic;
+}
+.class {
+    color: #3323cd;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+#info .text, #viewer .text {
+    font-style: italic;
+    color: #333;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+}
+.annotator {
+    font-style: italic;
+    color: #2d7431;
+}
+.datetime {
+    font-style: italic;
+    color: #72742d;
+}
+.confidence {
+    font-style: italic;
+    color: #b363a7;
+}
+.higherorder {
+    font-style: italic;
+    color: #6d0000;
+}
+nav li .setname {
+    display: block;
+    max-width: 150px;
+    font-size: 8px;
+    font-style: italic;
+}
+div#id {
+    width: 100%;
+    text-align: center;
+    font-size: 8px;
+    font-style: italic;
+    color: #666;
+}
+div#info .id, div#viewer .id {
+    display: block;
+    font-size: 8px;
+    font-style: italic;
+    color: #666;
+}
+.setname {
+    font-size: 8px;
+    font-style: italic;
+}
+
+div.correction {
+    width: 98%;
+    background: #d4e2e3;
+    border: 1px solid #fff;
+    padding: 2px;
+    margin-top:1px;
+    margin-bottom:1px;
+}
+div.correction span.title {
+    color: #17afb5;
+    font-weight: bold;
+}
+div.correctionchild {
+    padding-left: 10px;
+}
+
+div.deleted span.lbl {
+    text-decoration: line-through;
+    color: red;
+}
+div.suggestinsertion span.lbl {
+    font-style: italic;
+    color: blue;
+    font-size: 90%;
+}
+
+label.spanrole {
+    color: #854587;
+}
+div#search{
+    position: absolute;
+    display: none;
+    width: 520px;
+    padding: 10px;
+    background: #cdcdcd;
+    color: #333;
+    border: #30677c 1px solid;
+    border-radius: 15px;
+    min-height: 100px;
+    text-align: left;
+    left: 30%;
+}
+div#searchheader, div#viewerheader, div#treeviewheader {
+    width:100%;
+    background: #30677c;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+    border-radius: 5px;
+    margin-top: -3px;
+    cursor: move;
+}
+div#search button {
+    float: right;
+    margin-top: -5px;
+    background: #30677c;
+    cursor: pointer;
+}
+.optionlabel {
+    font-size: 90%;
+}
+#search textarea {
+    width: 90%;
+    min-height: 320px;
+}
+.suggestiondetails {
+    font-size: 75%;
+    font-style: italic;
+    color: #bbb;
+}
+.strinfo {
+    border: 2px dashed #1765b5;
+}
+.specialtype{
+    display: block;
+    font-size: 80%;
+    font-style: italic;
+}
+#info .specialdeleted {
+    display: block;
+    text-align: center;
+    width: 100%;
+    color: red;
+    font-weight: bold;
+    font-size: 110%;
+}
+#info .specialinsertion {
+    display: block;
+    text-align: center;
+    width: 100%;
+    color: blue;
+    font-weight: bold;
+    font-size: 110%;
+}
+div#treeview, div#viewer {
+    position: absolute;
+    display: none;
+    padding: 10px;
+    background: #cdcdcd;
+    color: #333;
+    border: #30677c 1px solid;
+    border-radius: 15px;
+    min-height: 100px;
+    text-align: left;
+}
+div#viewer {
+    width: 540px;
+}
+div#treeviewheader button, div#viewerheader button {
+    float: right;
+    margin-top: -5px;
+    background: #30677c;
+    cursor: pointer;
+}
+#tree {
+    width: 100%;
+}
+div.opentreeview {
+    background: url(treeview.png);
+    background-size: 48px 34px;
+    width: 48px;
+    height: 34px;
+    min-width: 48px;
+    min-height: 34px;
+    cursor: pointer;
+}
+div#document span.seqnr {
+    float: left;
+    display: inline-block;
+    margin-left: -20px;
+    font-family: monospace;
+    font-size: 52%;
+    color: #999;
+}

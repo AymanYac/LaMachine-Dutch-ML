@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" >
+    <head>
+        <meta http-equiv="content-type" content="application/xhtml+xml; charset=utf-8"/>
+        <meta name="author" content="Maarten van Gompel" />
+        <title>FoLiA Linguistic Annotation Tool</title>
+        <script type="text/javascript" src="/style/jquery-3.1.0.min.js"></script>
+        <script type="text/javascript" src="/style/jquery-ui.min.js"></script>
+        {% if namespace == "testflat" and docid != "manual" %}
+            <link rel="StyleSheet" href="/style/qunit-1.17.1.css" type="text/css" />
+            <script type="text/javascript" src="/style/qunit-1.17.1.js"></script>
+            <script type="text/javascript" src="/style/testflat.js"></script>
+        {% endif %}
+        <link rel="StyleSheet" href="/style/jquery-ui.min.css" type="text/css" />
+        <link rel="StyleSheet" href="/style/flat.css" type="text/css" />
+        <script type="text/javascript" src="/style/foliaspec.js"></script>
+        <script type="text/javascript" src="/style/folia.js"></script>
+        <script type="text/javascript" src="/style/flat.js"></script>
+        {% block head %}
+        {% endblock %}
+        {% if mode %}
+        <link rel="StyleSheet" href="/style/flat.{{ mode }}.css" type="text/css" />
+        <script type="text/javascript" src="/style/flat.{{ mode }}.js"></script>
+        {% endif %}
+        {% if docid and not fatalerror %}
+        <script type="text/javascript">
+            configuration_id = "{{ configuration_id|safe }}";
+            configuration = {{ configuration_json|safe }};
+            username = "{{ username|safe }}";
+            namespace = "{{ namespace|safe }}";
+            docid = "{{ docid|safe }}";
+            modes = {{ modes_json|safe }};
+            perspectives = {{ perspectives_json|safe }};
+            mode = "{{ mode }}";
+            {% if namespace == "testflat" %}
+            testnum = {{ testnum }};
+            {% endif %}
+            {% if docdeclarations %}
+            initialdeclarationlist = {{ docdeclarations|safe }};
+            {% endif %}
+            {% if setdefinitions %}
+            setdefinitions = {{ setdefinitions|safe }};
+            {% endif %}
+            {% if excludeclasses %}
+            excludeclasses = {{ excludeclasses|safe }};
+            {% endif %}
+            {% if metadata %}
+            metadata = {{ metadata|safe }};
+            {% endif %}
+            {% if toc %}
+            toc = {{ toc|safe }};
+            {% endif %}
+            {% if slices %}
+            slices = {{ slices|safe }};
+            {% endif %}
+            {% if slicesize %}
+            slicesize = {{ slicesize|safe }};
+            {% endif %}
+            {% if rtl %}
+            rtl = true;
+            {% else %}
+            rtl = false;
+            {% endif %}
+            {% block js %}
+            {% endblock js %}
+        </script>
+        {% endif %}
+    </head>
+    <body>
+    {% if fatalerror %}
+        <div id="fatalerror">{{fatalerror|safe}}</div>
+    {% else %}
+        <div id="topbar">
+            <div class="left">
+            <nav>
+                {% if docid %}
+                <ul>
+                <li>Modes
+                <ul>
+                        {% for mode, modename in modes %}
+                        {% if namespace == "pub" %}
+                        <li><a href="/{{ mode }}/pub/{{ configuration_id }}/{{ docid }}/">{{ modename }}</a></li>
+                        {% else %}
+                        <li><a href="/{{ mode }}/{{ namespace }}/{{ docid }}/">{{ modename }}</a></li>
+                        {% endif %}
+                        {% endfor %}
+                </ul>
+                </li>
+                {% block menu %}
+                {% endblock %}
+                </ul>
+                {% endif %}
+            </nav>
+            </div>
+            {% if docid %}
+                <span class="title"><img src="/style/logo.svg" alt="FoLiA Linguistic Annotation Tool" /> {{ docid }}</span>
+                {% else %}
+                <span class="title"><img src="/style/logo.svg" alt="FoLiA Linguistic Annotation Tool" /> FoLiA Linguistic Annotation Tool</span>
+            {% endif %}
+            <div class="right">
+            <ul>
+            {% block topbar_right %}
+            {% endblock %}
+            {% if loggedin %}
+            </ul>
+            <nav>
+            <ul>
+            <li><a href="/">Document Index</a></li>
+            <li>{{ username }}
+                <ul>
+                {% if isadmin %}
+                <li><a href="/admin/">Administation</a></li>
+                {% endif %}
+                <li><a href="/account/password_change/">Change password</a></li>
+                <li><a href="/logout/">Log out</a></li>
+                </ul>
+            </li>
+            </ul>
+            </nav>
+            {% endif %}
+            </div>
+            <span style="clear: both"></span>
+        </div>
+
+        {% block dialogs %}
+        {% endblock %}
+
+        <div id="main">
+            {% block main %}
+            {% endblock %}
+            <div id="aborted">
+                <strong>Loading aborted: </strong> There was too much data to display at once. You are looking at a partial result.
+                <span class="help">(Select a sub-part to visualise instead)</span>
+            </div>
+        </div>
+
+
+        {% if namespace == "testflat" %}
+        <div id="qunit"></div>
+        <div id="qunit-fixture"></div>
+        {% endif %}
+
+        <div id="wait">
+            <span class="msg">{{ waitmessage }}</span>
+            <img src="/style/loader.gif" alt="processing" />
+        </div>
+
+        <div id="footer">
+            <a href="http://proycon.github.io/folia"><strong>FoLiA Linguistic Annotation Tool</strong></a> ({{ version }}) - by Maarten van Gompel - Centre for Language and Speech Technology - Radboud University Nijmegen
+        </div>
+    {% endif %}
+    </body>
+</html>

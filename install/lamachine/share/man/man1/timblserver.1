@@ -1,0 +1,70 @@
+.TH timblserver 1 "2014 december 2"
+
+.SH NAME
+timblserver \- Tilburg Memory Based Learner Server
+.SH SYNOPSYS
+timblserver [TiMBL options] [Server options]
+
+timblserver \-\-config=configfile [\-\-pidfile=pfile] [\-\-logfile=lfile] [\-\-daemonize=val]
+
+.SH DESCRIPTION
+timblserver extends
+.B timbl
+with a server layer. It provides the possibility to access one timbl instance
+from multiple sessions. It also allows running and accessing different timbl
+instances in parallel.
+
+.SH OPTIONS
+The
+.B server
+options are
+.TP
+
+.BR \-\-config =file
+.RS
+read server settings from file
+.RE
+
+.BR \-\-pidfile =file
+.RS
+store the pid of the main server process in 'file'. A full path must me given for 'file' otherwise the file will end up in '/'.
+.RE
+
+.BR \-\-logfile =file
+
+.RS
+log server actions to 'file'. A full path must me given for 'file' otherwise the file will end up in '/'.
+.RE
+
+.BR \-\-daemonize =[yes|no]
+.RS
+run the server as a daemon. Default is yes.
+.RE
+
+.B \-S
+<port>
+.RS
+run the server on 'port' (deprecated)
+.RE
+
+.B \-C
+<num>
+.RS
+set maximum number of parallel connections to 'num' (deprecated)
+.RE
+
+all
+.B timbl
+options are documented in
+.BR timbl (1)
+
+.SH BUGS
+possibly
+
+.SH AUTHORS
+Ko van der Sloot Timbl@uvt.nl
+
+Antal van den Bosch Timbl@uvt.nl
+
+.SH SEE ALSO
+.BR timbl (1)

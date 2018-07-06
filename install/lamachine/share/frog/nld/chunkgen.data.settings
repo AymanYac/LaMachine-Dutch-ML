@@ -1,0 +1,9 @@
+ENRICHED
+e <utt>
+l chunkgen.data.lex.ambi.05
+k chunkgen.data.known.dddwfWawa
+u chunkgen.data.unknown.chnppddwFawasss
+p dddwfWawa
+P chnppddwFawasss
+O +vS -G -FColumns K: -a4 -mM -k5 -dID U: -a0 -mM -k19 -dID
+L chunkgen.data.top200

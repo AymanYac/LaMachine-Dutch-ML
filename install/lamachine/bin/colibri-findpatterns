@@ -1,0 +1,57 @@
+#!/bin/bash
+
+mintokens=1
+opt_u=""
+minskiptypes=1
+keeptmp=0
+
+usage() {
+ echo "Syntax: colibri-findpatterns patternlist corpusfile [corpusfile2]..." >&2
+ echo "Description: Find patterns in corpus data based on a presupplied list of patterns (one per line). " >&2
+ echo "Output: Files result.colibri.patternmodel and result.colibri.cls, all patterns will be decoded and printed to stdout on run" >&2
+ echo "Arguments: corpusfiles should be plain text files, tokenised, and one sentence per line" >&2
+ echo " -t int     Minimum amount of occurrences for a pattern to be included in the model (default: $threshold)" >&2
+ echo " -u         Compute an unindexed model instead of an indexed one (default is indexed), saves a lot of memory but less informative" >&2
+ echo " -T int     Skip-type" >&2
+ echo " -K         Keep intermediate files" >&2
+}
+
+while getopts ht:m:uKT:I flag
+do
+    case "$flag" in
+    (h) usage; exit 0;;
+    (t) mintokens=$OPTARG;;
+    (u) opt_u="--unindexed";;
+    (T) minskiptypes=$OPTARG;;
+    (K) keeptmp=1;;
+    (*) usage; exit 0;;
+    esac
+done
+shift $(expr $OPTIND - 1)
+
+if [ $# -eq 0 ] || [ $# -eq 1 ]; then
+    usage
+    exit 0
+fi
+
+
+echo "=== Class encoding corpora ===">&2
+colibri-classencode -o tmp -u ${@:2}
+
+echo "=== Class encoding pattern list ===">&2
+colibri-classencode -c tmp.colibri.cls -e -o patternlist $1
+mv patternlist.colibri.cls output.colibri.cls
+
+echo "=== Building pattern list ==="
+colibri-patternmodeller --datafile patternlist.colibri.dat --outputmodel patternlist.colibri.patternmodel --patternlist
+
+echo "=== Building pattern model ===">&2
+colibri-patternmodeller --constrained --inputmodel patternlist.colibri.patternmodel --datafile tmp.colibri.dat --outputmodel output.colibri.patternmodel --threshold $mintokens --skiptypes $minskiptypes $opt_u --instantiate --skipgrams --classfile output.colibri.cls --print 
+
+mv -f tmp.colibri.dat output.colibri.dat
+
+#cleanup
+if [ $keeptmp -eq 0 ]; then
+    rm patternlist.colibri.dat
+    rm patternlist.colibri.patternmodel
+fi

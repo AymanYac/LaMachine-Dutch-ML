@@ -1,0 +1,18 @@
+Metadata-Version: 1.1
+Name: python3-timbl
+Version: 2018.03.07
+Summary: Python 3 language binding for the Tilburg Memory-Based Learner
+Home-page: http://github.com/proycon/python-timbl
+Author: Sander Canisius, Maarten van Gompel
+Author-email: S.V.M.Canisius@uvt.nl, proycon@anaproy.nl
+License: GPL
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Topic :: Scientific/Engineering
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)

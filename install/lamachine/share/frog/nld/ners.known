@@ -1,0 +1,12 @@
+# format:
+# category TAB filename
+per	voornamen.ner
+per	familienamen.ner
+eve	eve.ner
+loc	loc.ner
+loc	geonames-be.ner
+loc	geonames-nl.ner
+org	gemeenten-nld.ner
+org	provincies-nld.ner
+org	regios-nld.ner
+org	waterschappen-nld.ner

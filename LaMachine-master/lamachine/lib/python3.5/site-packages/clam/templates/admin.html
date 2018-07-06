@@ -1,0 +1,70 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+    <title>CLAM Administrative Interface</title>
+    <script type="text/javascript" src="{{ url }}/static/jquery-1.8.3.min.js"></script>
+    <link rel="StyleSheet" href="{{ url }}/static/base.css" title="Base Stylesheet" type="text/css" />
+    <style type="text/css">
+        .status_staging {
+            color: black;
+        }
+        .status_running {
+            color: yellow;
+        }
+        .status_done {
+            color: green;
+        }
+        ul ul li {
+            background: white;
+        }
+        li span {
+            font-style: italic;
+            display: inline-block;
+            float: right;
+            padding-left: 10px;
+            padding-right: 10px;
+        }
+        li span.date, li span.size {
+            color: black;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <h1>CLAM Administrative Interface</h1>
+    <div class="box">
+        <h3>Users &amp; Projects</h3>
+
+        <ul>
+        {% for user, projects in usersprojects: %}
+            <li><strong>{{ user }}</strong> ({{ totalsize[user] }} MB)<ul>
+            {% for project, date, size, status in projects %}
+                <li><a href="{{ url }}/admin/inspect/{{ user }}/{{ project }}">{{ project }}</a>
+                <span>
+                {% if status == 1 %}
+                    <a href="{{ url }}/admin/abort/{{ user }}/{{ project }}" target="_blank">Abort run</a>
+                {% else %}
+                    <a href="{{ url }}/admin/delete/{{ user }}/{{ project }}" target="_blank">Delete project</a>
+                {% endif %}
+                </span>
+                <span class="size">{{ size }} MB</span>
+                <span class="date">{{ date }}</span>
+                {% if status == 0 %}
+                <span class="status_staging">staging</span>
+                {% elif status == 1 %}
+                <span class="status_running">running</span>
+                {% elif status == 2 %}
+                <span class="status_done">done</span>
+                {% endif %}
+                </span>
+                </li>
+            {% endfor %}
+            </ul></li>
+        {% endfor %}
+        </ul>
+
+    </div>
+</div>
+</body>
+</html>

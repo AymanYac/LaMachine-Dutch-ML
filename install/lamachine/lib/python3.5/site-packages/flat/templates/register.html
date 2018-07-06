@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block title %}Create an account{% endblock %}
+
+{% block main %}
+<img id="logo" src="/style/logo.svg" alt="FoLiA Linguistic Annotation Tool" />
+<div id="logindialog" class="dialog">
+  <h3>Create an account</h3>
+    <form action="" method="post">
+        {{ form.as_p }}
+        <input type="submit" value="Create the account">
+        {% csrf_token %}
+    </form>
+</div>
+{% endblock %}

@@ -1,0 +1,7 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine
+exec_prefix=${prefix}
+
+Name: frogdata
+Version: 0.15
+Description: datafiles for frog
+

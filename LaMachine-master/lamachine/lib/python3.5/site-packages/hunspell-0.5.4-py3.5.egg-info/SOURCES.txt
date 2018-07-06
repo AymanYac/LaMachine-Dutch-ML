@@ -1,0 +1,13 @@
+COPYING
+COPYING.LESSER
+MANIFEST.in
+README.md
+gpl-3.0.txt
+hunspell.cpp
+lgpl-3.0.txt
+setup.cfg
+setup.py
+hunspell.egg-info/PKG-INFO
+hunspell.egg-info/SOURCES.txt
+hunspell.egg-info/dependency_links.txt
+hunspell.egg-info/top_level.txt

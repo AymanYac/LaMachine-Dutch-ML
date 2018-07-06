@@ -1,0 +1,13 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+openmpflags=-fopenmp
+
+Name: timbl
+Version: 6.4.11
+Description: timbl library.
+Requires.private: libxml-2.0
+Libs: -L${libdir} -ltimbl
+Libs.private:  -lxml2 -L/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine/lib -lticcutils ${openmpflags}
+Cflags: -I${includedir} 

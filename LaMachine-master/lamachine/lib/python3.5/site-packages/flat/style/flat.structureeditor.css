@@ -1,0 +1,104 @@
+.sinfo {
+    background: #666;
+}
+.F:hover {
+    border: 2px solid #666;
+    cursor: pointer;
+}
+.F {
+    border: 2px solid transparent;
+    margin: 2px;
+    padding: 0px;
+    border: 2px transparent solid;
+}
+
+div.F>.sinfo {
+    display:none;
+}
+
+div.F:hover>.sinfo {
+    position: absolute;
+    display: block;
+    min-height: 16px;
+    left: 0px;
+    color: white;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 9px;
+}
+
+
+div.div {
+    display: block;
+    margin-bottom: 5px;
+}
+div.div>.sinfo {
+    background: #742222
+}
+div.div:hover {
+    border: 2px solid #742222;
+}
+
+div.p {
+    display: block;
+    margin-bottom: 5px;
+}
+div.p>.sinfo {
+    background: #746b22;
+}
+div.p:hover {
+    border: 2px solid #746b22;
+}
+
+div.s, div.w, div.part, div.s div.quote, div.p div.quote, div.morpheme {
+    display: inline-block;
+}
+div.s>.sinfo {
+    background: #272274;
+}
+div.s:hover {
+    background: #b2bbcd;
+    border: 2px solid #b2bbcd;
+}
+
+div.br {
+    height: 2px;
+}
+
+div.w {
+    margin: 0px;
+    border: 1px solid transparent;
+}
+div.w>.sinfo {
+    background: #2a8044;
+    color: black;
+}
+div.w:hover {
+    background: #97b5a0;
+    border: 1px solid #2a8044;
+}
+
+div.head {
+    font-size: 120%;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: 20px;
+}
+div.head>.sinfo {
+    background: black;
+}
+
+span.lbl {
+    display: none;
+    padding: 0;
+    margin: 0;
+}
+
+
+div.text {
+    padding-top: 10px;
+}
+div.text:hover {
+    border: 2px solid transparent;
+}
+

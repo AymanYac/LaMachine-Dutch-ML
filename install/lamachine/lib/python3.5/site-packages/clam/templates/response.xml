@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+{% if info %}
+<?xml-stylesheet type="text/xsl" href="{{ url }}/static/info.xsl"?>
+{% elif not disableinterface %}
+<?xml-stylesheet type="text/xsl" href="{{ url }}/static/interface.xsl"?>
+{% endif %}
+{% if project and user %}
+<clam xmlns:xlink="http://www.w3.org/1999/xlink" version="{{ version }}" id="{{ system_id }}" name="{{ system_name }}" project="{{ project }}" user="{{ user }}" baseurl="{{ url }}" accesstoken="{{ accesstoken }}"  interfaceoptions="{{ interfaceoptions }}" oauth_access_token="{{ oauth_access_token }}" authentication="{{ auth_type }}">
+{% elif project %}
+<clam xmlns:xlink="http://www.w3.org/1999/xlink" version="{{ version }}" id="{{ system_id }}" name="{{ system_name }}" project="{{ project }}" baseurl="{{ url }}" accesstoken="{{ accesstoken }}" interfaceoptions="{{ interfaceoptions }}" oauth_access_token="{{ oauth_access_token }}" authentication="{{ auth_type }}">
+{% elif user %}
+<clam xmlns:xlink="http://www.w3.org/1999/xlink" version="{{ version }}" id="{{ system_id }}" name="{{ system_name }}" user="{{ user }}" baseurl="{{ url }}" interfaceoptions="{{ interfaceoptions }}" oauth_access_token="{{ oauth_access_token }}" authentication="{{ auth_type }}">
+{% else %}
+<clam xmlns:xlink="http://www.w3.org/1999/xlink" version="{{ version }}" id="{{ system_id }}" name="{{ system_name }}" baseurl="{{ url }}" interfaceoptions="{{ interfaceoptions }}" oauth_access_token="{{ oauth_access_token }}" authentication="{{ auth_type }}">
+{% endif %}
+{############################################################################################}
+    <description>{{ system_description }}</description>
+    <version>{{ system_version }}</version>
+    <email>{{ system_email }}</email>
+{############################################################################################}
+{% if customhtml %}
+    <customhtml>
+    <![CDATA[
+    {{ customhtml|safe }}
+    ]]>
+    </customhtml>
+{% endif %}
+{############################################################################################}
+{% if not project %}
+    <projects totalsize="{{ totalsize }}">
+        {% for p, time, size, status in projects %}
+            <project xlink:type="simple" xlink:href="{{ url }}/{{ p }}" time="{{ time }}" size="{{ size }}" status="{{ status }}">{{ p }}</project>
+        {% endfor %}
+    </projects>
+{% endif %}
+{############################################################################################}
+{% if actions and not project %}
+    <actions>
+    {% for action in actions %}
+        {{ action.xml()|safe }}
+    {% endfor %}
+    </actions>
+{% endif %}
+{############################################################################################}
+{% if not datafile and project %}
+    <status code="{{ statuscode }}" message="{{ statusmessage }}" completion="{{ completion }}" errors="{{ errors }}" errormsg="{{ errormsg }}">
+    {% if statuscode == 1 or statuscode == 2 %}
+        {% for message, time, completion2 in statuslog %}
+        <log time="{{ time }}" completion="{{ completion2 }}">{{ message }}</log>
+        {% endfor %}
+    {% endif %}
+    </status>
+{% endif %}
+{############################################################################################}
+{% if statuscode == 0 or statuscode == 2 or not project %}
+    <profiles>
+        {% for profile in profiles %}
+            {{ profile.xml()|indent(8,false)|safe }}
+        {% endfor %}
+    </profiles>
+    <parameters>
+        {% for group, parameters in parameterdata %}
+        <parametergroup name="{{ group }}">
+            {% for parameter in parameters %}
+                {% if parameter.access(user) %}
+                    {{ parameter.xml()|safe }}
+                {% endif %}
+            {% endfor %}
+        </parametergroup>
+        {% endfor %}
+    </parameters>
+{% endif %}
+{############################################################################################}
+{% if project and matchedprofiles and program %}
+    <program matchedprofiles="{{ matchedprofiles }}">
+        {% for outputfilename, (outputtemplate, inputfiles) in program.items() %}
+        <outputfile name="{{outputfilename}}" template="{{outputtemplate}}" xlink:type="simple" xlink:href="{{ url }}/{{ project }}/output/{{ outputfilename }}">
+            {% for inputfilename, inputtemplate in inputfiles.items() %}
+                <inputfile name="{{inputfilename}}" template="{{inputtemplate}}" xlink:type="simple" xlink:href="{{ url }}/{{ project }}/input/{{ inputfilename }}" />
+            {% endfor %}
+        </outputfile>
+        {% endfor %}
+    </program>
+{% endif %}
+{############################################################################################}
+{% if (statuscode == 2 or datafile) and project %}
+    <output>
+        {% for outputfile in outputpaths %}
+            {% if outputfile.metadata and outputfile.metadata.provenance %}
+            <file xlink:type="simple" xlink:href="{{ url }}/{{ project }}/output/{{ outputfile.filename }}" template="{{ outputfile.metadata.provenance.outputtemplate_id }}">
+            {% else %}
+            <file xlink:type="simple" xlink:href="{{ url }}/{{ project }}/output/{{ outputfile.filename }}">
+            {% endif %}
+                <name>{{ outputfile.filename }}</name>
+            {% if outputfile.viewers %}
+                <viewers>
+                    {% for viewer in outputfile.viewers %}
+                    <viewer xlink:type="simple" xlink:href="{{ url }}/{{ project }}/output/{{ outputfile.filename }}/{{ viewer.id }}">{{ viewer.name }}</viewer>
+                    {% endfor %}
+                </viewers>
+            {% endif %}
+            {% if outputfile.converters %}
+                <converters>
+                    {% for converter in outputfile.converters %}
+                    <converter xlink:type="simple" xlink:href="{{ url }}/{{ project }}/output/{{ outputfile.filename }}/{{ converter.id }}">{{ converter.label }}</converter>
+                    {% endfor %}
+                </converters>
+            {% endif %}
+            </file>
+        {% endfor %}
+    </output>
+{% endif %}
+{############################################################################################}
+{% if statuscode == 0 or statuscode == 2 or datafile or not project %}
+    <inputsources>
+        {% for inputsource in inputsources %}
+        <inputsource id="{{ inputsource.id }}">{{ inputsource.label }}</inputsource>
+        {% endfor %}
+    </inputsources>
+    {% if project %}
+    <input>
+      {% for inputfile in inputpaths %}
+        {% if inputfile.metadata and inputfile.metadata.inputtemplate %}
+        <file xlink:type="simple" xlink:href="{{ url }}/{{ project }}/input/{{ inputfile.filename }}" template="{{ inputfile.metadata.inputtemplate }}">
+        {% else %}
+        <file xlink:type="simple" xlink:href="{{ url }}/{{ project }}/input/{{ inputfile.filename }}">
+        {% endif %}
+            <name>{{ inputfile.filename }}</name>
+        </file>
+      {% endfor %}
+    </input>
+    {% endif %}
+{% endif %}
+</clam>

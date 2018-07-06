@@ -1,0 +1,130 @@
+
+# This file must be used with "source bin/activate" *from bash or zsh*
+# you cannot run it directly
+# EDITED by LaMachine
+
+deactivate () {
+    unset PYTHONPATH
+
+    unset pydoc
+
+    # reset old environment variables
+    if [ -n "$_OLD_VIRTUAL_PATH" ] ; then
+        PATH="$_OLD_VIRTUAL_PATH"
+        export PATH
+        unset _OLD_VIRTUAL_PATH
+    fi
+    if [ -n "$_OLD_VIRTUAL_PYTHONHOME" ] ; then
+        PYTHONHOME="$_OLD_VIRTUAL_PYTHONHOME"
+        export PYTHONHOME
+        unset _OLD_VIRTUAL_PYTHONHOME
+    fi
+    if [ -n "$_OLD_VIRTUAL_LD_LIBRARY_PATH" ] ; then
+        LD_LIBRARY_PATH="$_OLD_VIRTUAL_LD_LIBRARY_PATH"
+        export LD_LIBRARY_PATH
+        unset _OLD_VIRTUAL_LD_LIBRARY_PATH
+    fi
+    if [ -n "$_OLD_VIRTUAL_LD_RUN_PATH" ] ; then
+        LD_RUN_PATH="$_OLD_VIRTUAL_LD_RUN_PATH"
+        export LD_RUN_PATH
+        unset _OLD_VIRTUAL_LD_RUN_PATH
+    fi
+    if [ -n "$_OLD_VIRTUAL_CPATH" ] ; then
+        CPATH="$_OLD_VIRTUAL_CPATH"
+        export CPATH
+        unset _OLD_VIRTUAL_CPATH
+    fi
+
+    # This should detect bash and zsh, which have a hash command that must
+    # be called to get it to forget past commands.  Without forgetting
+    # past commands the $PATH changes we made may not be respected
+    if [ -n "$BASH" -o -n "$ZSH_VERSION" ] ; then
+        hash -r 2>/dev/null
+    fi
+
+    if [ -n "$_OLD_VIRTUAL_PS1" ] ; then
+        PS1="$_OLD_VIRTUAL_PS1"
+        export PS1
+        unset _OLD_VIRTUAL_PS1
+    fi
+
+    unset VIRTUAL_ENV
+    if [ ! "$1" = "nondestructive" ] ; then
+    # Self destruct!
+        unset -f deactivate
+    fi
+}
+
+# unset irrelevant variables
+deactivate nondestructive
+
+
+VIRTUAL_ENV="/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine"
+export VIRTUAL_ENV
+
+_OLD_VIRTUAL_PATH="$PATH"
+PATH="$VIRTUAL_ENV/bin:$PATH"
+export PATH
+
+_OLD_VIRTUAL_LD_LIBRARY_PATH="$LD_LIBRARY_PATH"
+case ":$LD_LIBRARY_PATH:" in
+      *":$VIRTUAL_ENV/lib:"*) :;; # already there
+      *) export LD_LIBRARY_PATH="$VIRTUAL_ENV/lib:$LD_LIBRARY_PATH";;
+esac
+
+_OLD_VIRTUAL_LD_RUN_PATH="$LD_RUN_PATH"
+case ":$LD_RUN_PATH:" in
+      *":$VIRTUAL_ENV/lib:"*) :;; # already there
+      *) export LD_RUN_PATH="$VIRTUAL_ENV/lib:$LD_RUN_PATH";;
+esac
+
+export _OLD_VIRTUAL_CPATH="$CPATH"
+case ":$CPATH:" in
+      *":$VIRTUAL_ENV/include:"*) :;; # already there
+      *) export CPATH="$VIRTUAL_ENV/include:$CPATH";;
+esac
+
+# unset PYTHONHOME if set
+# this will fail if PYTHONHOME is set to the empty string (which is bad anyway)
+# could use `if (set -u; : $PYTHONHOME) ;` in bash
+if [ -n "$PYTHONHOME" ] ; then
+    _OLD_VIRTUAL_PYTHONHOME="$PYTHONHOME"
+    unset PYTHONHOME
+fi
+
+if [ -z "$VIRTUAL_ENV_DISABLE_PROMPT" ] ; then
+    _OLD_VIRTUAL_PS1="$PS1"
+    if [ "x" != x ] ; then
+        PS1="$PS1"
+    else
+    if [ "`basename "$VIRTUAL_ENV"`" = "__" ] ; then
+        # special case for Aspen magic directories
+        # see http://www.zetadev.com/software/aspen/
+        PS1="[`basename \`dirname "$VIRTUAL_ENV"\``] $PS1"
+    else
+        PS1="(`basename "$VIRTUAL_ENV"`)$PS1"
+    fi
+    fi
+    export PS1
+fi
+
+alias pydoc="python -m pydoc"
+
+# This should detect bash and zsh, which have a hash command that must
+# be called to get it to forget past commands.  Without forgetting
+# past commands the $PATH changes we made may not be respected
+if [ -n "$BASH" -o -n "$ZSH_VERSION" ] ; then
+    hash -r 2>/dev/null
+fi
+
+if [ -z "$LAMACHINE_QUIET" ]; then
+    cat $VIRTUAL_ENV/src/LaMachine/motd
+    echo "    (Set LAMACHINE_QUIET=1 prior to activation to suppress this message)"
+fi
+
+export NXF_HOME="$VIRTUAL_ENV/src/nextflow"
+
+EXTRAACTIVATE=`find $VIRTUAL_ENV/bin -type f -name "extraactivate.*.sh"`
+for f in $EXTRAACTIVATE; do
+    source $f
+done

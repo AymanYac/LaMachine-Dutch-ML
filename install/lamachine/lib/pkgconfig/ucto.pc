@@ -1,0 +1,11 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: ucto
+Version: 0.12
+Description: Unicode Tokenizer
+Libs: -L${libdir} -lucto
+Libs.private: -L/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine/lib -lfolia -licuio -licui18n -licuuc -licudata -lexttextcat-2.0  -lxml2 -L/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine/lib -lticcutils
+Cflags: -I${includedir}

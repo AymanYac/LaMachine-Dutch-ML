@@ -1,0 +1,5 @@
+[console_scripts]
+pynlpl-computepmi = pynlpl.tools.computepmi:main
+pynlpl-makefreqlist = pynlpl.tools.freqlist:main
+pynlpl-sampler = pynlpl.tools.sampler:main
+

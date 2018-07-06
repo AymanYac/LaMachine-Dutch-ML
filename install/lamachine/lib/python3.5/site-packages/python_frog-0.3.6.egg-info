@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: python-frog
+Version: 0.3.6
+Summary: Python binding to FROG, an NLP suite for Dutch doing part-of-speech tagging, lemmatisation, morphological analysis, named-entity recognition, shallow parsing, and dependency parsing.
+Home-page: https://github.com/proycon/python-frog
+Author: UNKNOWN
+Author-email: proycon@anaproy.nl
+License: GPL
+Description: UNKNOWN
+Keywords: nlp computational_linguistics dutch pos lemmatizer
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires: frog (>=0.13.6)

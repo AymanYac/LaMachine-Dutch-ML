@@ -1,0 +1,12 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: frog
+Version: 0.14
+Description: Frog stuff
+Requires.private: libxml-2.0
+Libs: -L${libdir} -lfrog
+Libs.private: -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -lucto -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -lfolia -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -lmbt -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -ltimbl -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -lticcutils -licuio -licui18n -licuuc -licudata -lxml2 
+Cflags: -I${includedir}

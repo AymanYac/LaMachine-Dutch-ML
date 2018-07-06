@@ -1,0 +1,12 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+
+Name: mbt
+Version: 3.3.1
+Description: mbt library.
+Requires.private: timbl >= 6.4.2
+Libs: -L${libdir} -lmbt
+Libs.private: -lpthread  -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -ltimbl -L/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine/lib -lticcutils
+Cflags: -I${includedir}

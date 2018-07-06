@@ -1,0 +1,7 @@
+[console_scripts]
+clamclient = clam.clamclient:main
+clamdispatcher = clam.clamdispatcher:main
+clamnewproject = clam.clamnewproject:main
+clamservice = clam.clamservice:main
+startclamservice = clam.clamservice:main
+

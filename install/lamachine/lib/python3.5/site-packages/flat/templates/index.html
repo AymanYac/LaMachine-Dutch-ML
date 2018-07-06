@@ -1,0 +1,140 @@
+{% extends "base.html" %}
+
+
+{% block main %}
+<img id="logo" src="/style/logo.svg" alt="FoLiA Linguistic Annotation Tool" />
+
+<div id="uploadform" class="dialog">
+    <h3>Upload</h3>
+    <p>
+    Here you can upload a new document to the editor.
+    </p>
+    <form action="/upload/" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <label>Select file:</label> <input type="file" name="file" /><br/>
+        <label>Namespace:</label> 
+        <select name="namespace">
+            {% if namespace %}
+            <option value="{{namespace}}" selected="selected">{{namespace}}</option>
+            {% endif %}
+            {% for dir in recursivedirs %}
+                {% if dir != namespace %}
+                <option value="{{dir}}">{{dir}}</option>
+                {% endif %}
+            {% endfor %}
+        </select> <br/>
+        <label>Input format:</label> <select name="inputformat" onchange="{{inputformatchangefunction|safe}}">
+            <option value="folia" selected="selected">FoLiA XML</option>
+            {% for converter in converters %}
+                <option value="{{converter.id}}">{{converter.name}}</option>
+            {% endfor %}
+        </select>
+        <div id="convparameterhelp">
+        </div>
+        <div id="convparameters">
+            <label>Conversion parameters:</label> <input type="text" name="parameters" value="" />
+        </div>
+        <div class="buttoncontainer">
+            <input id="uploadbutton" class="button" type="submit" value="Upload" onclick="$('#wait .msg').html('Uploading document...'); $('#wait').show()" />
+            <button id="cancelupload" class="button">Cancel</button>
+        </div>
+    </form>
+</div>
+
+
+<div id="adddirectoryform" class="dialog">
+    <h3>Add Directory</h3>
+    <form action="/addnamespace/" enctype="multipart/form-data" method="post">
+        {% csrf_token %}
+        <label>Namespace: </label> {{namespace}}<br />
+        <label>New directory: </label> <input type="text" name="newdirectory" value="" />
+        <input type="hidden" name="namespace" value="{{namespace}}" />
+        <div class="buttoncontainer">
+            <input class="button" type="submit" value="Add directory" onclick="$('#wait').show()" />
+            <button id="canceladddirectory" class="button">Cancel</button>
+        </div>
+    </form>
+</div>
+
+<div class="dialog">
+    <h3>Document Index</h3>
+    {% if error %}
+    <div class="error">{{ error }}</div>
+    {% endif %}
+    <div class="indexbuttoncontainer">
+    {% if configuration.allownew %}
+        <button id="newbutton" class="button">New document</button>
+    {% endif %}
+    {% if configuration.allowupload %}
+        <button id="showuploadbutton" class="button">Upload document</button>
+    {% endif %}
+    {% if configuration.allowupload or configuration.allownew %}
+        <button id="adddirectorybutton" class="button">Add new directory</button>
+    {% endif %}
+    </div>
+    {% if namespace %}<h4>{{ namespace }}</h4>{% endif %}
+
+    {% if namespace or subdirs %}
+        <ul id="dirlist">
+        {% if namespace %}
+            <li><a href="/index/{{parentdir}}">../</a></li>
+        {% endif %}
+        {% for dir in subdirs %}
+            {% if namespace %}
+                <li><a href="/index/{{namespace}}/{{dir}}">{{dir}}/</a></li>
+            {% else %}
+                <li><a href="/index/{{dir}}">{{dir}}/</a></li>
+            {% endif %}
+        {% endfor %}
+        </ul>
+    {% endif %}
+    <form id="filemanform" action="/filemanagement/" method="post"/>
+    {% csrf_token %}
+    {% if docs %}
+        <ul id="doclist">
+        {% for doc, size, timestamp, metaitems  in docs %}
+        <li>{%if allowcopy or allowdelete %}<input type="checkbox" name="docselect{{forloop.counter0}}" value="{{namespace}}/{{doc}}"/>{%endif%} <a href="/{{ defaultmode }}/{{ namespace }}/{{ doc }}/" onclick="index_click();">{{ doc }}</a> <span>{{size}}MB &nbsp;&nbsp; <em>{{ timestamp }}</em></span> <span>[<a href="/download/{{ namespace }}/{{ doc }}.folia.xml">Download</a>]</span>
+            <span>
+            {% for key, value in metaitems %}
+            {{key}}: {{value}} &nbsp;
+            {% endfor %} 
+            </span> </li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% if namespace %}
+    {% if allowcopy or allowdelete %}
+    <div id="filemanagement">
+        <h4>Document Management Operations</h4>
+        <input type="hidden" id="filemanmode" name="filemanmode" value="" />
+        {% if allowcopy %}
+        <button id="copybutton" onclick="submitfilemanager('copy')">Copy</button> selected documents to 
+        <select name="copytarget">
+            {% for dir in recursivedirs %}
+            {% if dir != namespace %}
+            <option value="{{dir}}">{{dir}}</option>
+            {% endif %}
+            {% endfor %}
+        </select><br/>
+        {% endif %}
+        {% if allowcopy and allowdelete %}
+        <button id="movebutton" onclick="submitfilemanager('move')">Move</button> selected documents to 
+        <select name="movetarget">
+            {% for dir in recursivedirs %}
+            {% if dir != namespace %}
+            <option value="{{dir}}">{{dir}}</option>
+            {% endif %}
+            {% endfor %}
+        </select> <br/>
+        {% endif %}
+        {% if allowdelete %}
+        <button id="deletebutton" onclick="submitfilemanager('delete')">Delete</button> selected documents<br/>
+        {% endif %}
+    </div>
+    </form>
+    {% endif %}
+    {% endif %}
+</div>
+
+{% endblock %}
+

@@ -1,0 +1,13 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/install/lamachine
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+includedir=${prefix}/include
+openmp=-fopenmp
+
+Name: ticcutils
+Version: 0.18
+Description: TiCC Utils Library.
+Requires.private:
+Libs: -L${libdir} -lticcutils
+Libs.private: -licuio -licui18n -licuuc -licudata  -lz  -lbz2 -ltar -lboost_regex -lxml2
+Cflags: ${openmp} -I${includedir} 

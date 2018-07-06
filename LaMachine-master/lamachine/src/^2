@@ -1,0 +1,10 @@
+ project name: LanguageMachines/PICCL
+ repository  : https://github.com/LanguageMachines/PICCL
+ local path  : /home/moriarty/.nextflow/assets/LanguageMachines/PICCL
+ main script : ticcl.nf
+ description : PICCL
+ revisions   : 
+ * master (default)
+   dbnlpipeline
+   develop
+   v0.4.4 [t]

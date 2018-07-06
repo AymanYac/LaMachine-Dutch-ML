@@ -1,0 +1,3 @@
+[console_scripts]
+gecco = gecco.gecco:main
+

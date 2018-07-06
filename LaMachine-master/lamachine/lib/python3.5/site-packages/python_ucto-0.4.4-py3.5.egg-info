@@ -1,0 +1,21 @@
+Metadata-Version: 1.1
+Name: python-ucto
+Version: 0.4.4
+Summary: This is a Python binding to the tokenizer Ucto. Tokenisation is one of the first step in almost any Natural Language Processing task, yet it is not always as trivial a task as it appears to be. This binding makes the power of the ucto tokeniser available to Python. Ucto itself is a regular-expression based, extensible, and advanced tokeniser written in C++ (https://languagemachines.github.io/ucto).
+Home-page: https://github.com/proycon/python-ucto
+Author: Maarten van Gompel
+Author-email: proycon@anaproy.nl
+License: GPL
+Description: UNKNOWN
+Keywords: tokenizer tokenization tokeniser tokenisation nlp computational_linguistics ucto
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Topic :: Text Processing :: Linguistic
+Classifier: Programming Language :: Cython
+Classifier: Programming Language :: Python :: 2.7
+Classifier: Programming Language :: Python :: 3
+Classifier: Operating System :: POSIX
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: License :: OSI Approved :: GNU General Public License v3 (GPLv3)
+Requires: ucto (>=0.9.6)

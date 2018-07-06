@@ -1,0 +1,6 @@
+prefix=/mnt/c/Users/yacay/Downloads/LaMachine-master/LaMachine-master/lamachine
+exec_prefix=${prefix}
+
+Name: uctodata
+Version: 0.5
+Description: datafiles for ucto

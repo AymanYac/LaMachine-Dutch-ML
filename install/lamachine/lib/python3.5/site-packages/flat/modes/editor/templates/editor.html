@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+
+{% block head %}
+<!-- dependencies -->
+<link rel="StyleSheet" href="/style/flat.viewer.css" type="text/css" />
+<script type="text/javascript" src="/style/flat.viewer.js"></script> 
+<link rel="stylesheet" href="/style/treeview.css" type="text/css" />
+<script type="text/javascript" src="/style/svg-tree-drawer.js"></script> 
+{% endblock %}
+
+{% block js %}
+initialcorrectionset = '{{ initialcorrectionset }}';
+{% endblock %}
+
+{% block menu %}
+{% include "viewermenu.html" %}
+<li>Editor Annotations
+<ul id="annotationseditviewmenu">
+</ul>
+</li>
+<li>Edit Forms
+<ul id="editforms">
+    {% if configuration.alloweditformdirect %}
+    <li id="editformdirect"><a href="javascript:toggleeditform('direct')">Direct Edit (D)</a></li>
+    {% endif %}
+    {% if configuration.alloweditformcorrection %}
+    <li id="editformcorrection"><a href="javascript:toggleeditform('correction')">Edit as correction (C)</a></li>
+    {% endif %}
+    {% if configuration.alloweditformalternative %}
+    <li id="editformalternative"><a href="javascript:toggleeditform('alternative')">Edit as alternative (A)</a></li>
+    {% endif %}
+    {% if configuration.alloweditformnew %}
+    <li id="editformnew"><a href="javascript:toggleeditform('new')">Add as new (N)</a></li>
+    {% endif %}
+</ul>
+</li>
+<li>Tools &amp; Options
+<ul id="toolsandoptions">
+    {% include "viewertoolsandoptions.html" %}
+    {% if configuration.allowconfidence %}
+    <li id="toggleeditconfidence"><a href="javascript:toggleeditconfidence()">Enable confidence editing elements</a></li>
+    {% endif %}
+    {% if configuration.allowdeclare %}
+    <li><a href="javascript:declare()">Add new Annotation Type</a></li>
+    {% endif %}
+    <li><a href="javascript:showhistory()">History &amp; Undo</a></li>
+    <li><a href="javascript:openconsole()">Query Console</a></li>
+</ul>
+</li>
+{% endblock %}
+
+{% block dialogs %}
+<div id="leftpane">
+    <div id="perspective"></div>
+    <div id="selector"></div>
+    <div id="textclassselector"></div>
+    <div id="editformcorrectionsetselector">
+    Correction set: <select id="editformcorrectionset"></select>
+    </div>
+    <div id="legend"></div>
+</div>
+<div id="info"></div>
+<div id="editor">
+    <div id="editorheader">
+        <span>Annotation Editor</span>
+        <button id="editordiscard">x</button>
+    </div>
+    <div class="body">
+    </div>
+    <div class="buttoncontainer">
+        <span id="editoraddfields">New:
+        <select id="editoraddablefields">
+        </select>
+        <button id="editoraddfield">+</button></span>
+    </div>
+    <div id="submitoptionscontainer">
+        <input id="queuemode" type="checkbox" /> <label for="queuemode" title="Do not submit the annotation directly but queue it for later submission. The queue can always be accessed through the console window">Queue for later submission</label><br/>
+        <input id="repeatmode" type="checkbox" /> <label for="repeatmode" title="This will pre-fill the edit dialog for the next clicked target, with the same annotations made for the current one.">Repeat this annotation for the next target</label><br/>
+        <input id="openinconsole" type="checkbox" /> <label for="openinconsole" title="The console window shows queued queries and allows to edit and submit them">Open console window after submission</label><br/>
+    </div>
+    <div class="buttoncontainer">
+        <button id="editorsubmit" title="Submit the annotation">Ok</button>
+    </div>
+</div>
+<div id="newdeclaration" class="dialog">
+    <div id="newdeclarationheader">
+        <span>Declare New Annotation Type</span>
+        <button id="newdeclarationdiscard">x</button>
+    </div>
+    <p>Here you can declare a new type of linguistic annotation, by choosing the type and pointing it to a valid FoLiA Set Definition that defines what classes (e.g. label/tag set) is to be used.</p>
+    <label>Annotation Type:</label> <select id="newdeclarationannotationtype"></select><br />
+    <label>Set Definition URL:</label> <input id="newdeclarationset" /> 
+    <div class="buttoncontainer">
+        <input id="newdeclarationsubmit" type="submit" value="Add declaration" class="button" />
+    </div>
+</div>
+<div id="history" class="dialog">
+    <div id="historyheader">
+        <span>History</span>
+        <button id="historydiscard">x</button>
+    </div>
+    <div id="historybody">
+    </div>
+</div>
+<div id="console" class="dialog">
+    <div id="consoleheader">
+        <span>Query Console</span>
+        <button id="consolediscard">x</button>
+    </div>
+    <div id="consolebody">
+        Queries in FoLiA Query Language: <button onclick="$('#queryinput').val('');">Clear</button><br />
+        <textarea id="queryinput"></textarea>
+
+        <div class="buttoncontainer">
+            <button id="consolesubmit">Ok</button>
+        </div>
+    </div>
+</div>
+{% include "search.html" %}
+{% include "treeview.html" %}
+<div id="connectioninfo"></div>
+<div id="queueinfo">
+    <button id="submitqueue" title="Submit all queued annotations">Submit queue</button>
+</div>
+<div id="saveversion">
+<label>Version label:</label> <input id="versionlabel" title="A label to quickly identify this version" /><button id="savebutton" title="Explicitly save the current state of the document, using the specified version label (if any), this enables you to go back to this version later. Note that explicit saving is not required, all changes will be retained automatically. Make sure to submit any queued actions prior to this.">Save</button>
+</div>
+<div id="notice">
+</div>
+{% endblock %}
+
+{% block main %}
+<div id="document">
+</div>
+{% endblock %}
+

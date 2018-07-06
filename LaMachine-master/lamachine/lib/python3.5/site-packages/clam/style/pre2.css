@@ -1,0 +1,218 @@
+body {
+    background: #E6DCCA;
+    font-family: sans-serif;
+    font-size: 12px;
+}
+#container {
+	background: #cfbf9d;
+	border-radius: 12px;
+    -moz-border-radius: 12px; /* CSS3 for older Mozilla */
+    -webkit-border-radius: 12px; /* CSS3 for Safari */
+    padding-bottom: 2px;	
+}
+
+#status p {
+    text-align: center;
+    font-style: italic;
+    color: #434343;
+}
+
+h2 {
+    font-size: 120%;
+    color: #a6956f;
+    text-decoration: small-caps;  
+    border-bottom:  1px solid #a6956f;
+}
+h3 {
+    margin-left: 5px;
+    font-size: 100%;
+    color: #a6956f;
+    text-decoration: small-caps;  
+    border-bottom:  1px solid #a6956f;
+}
+#header {
+	background: #cfbf9d;
+    margin-left: 0px;
+    margin-right: 0px;
+    margin-top: 0px;    
+    margin-bottom:5px;
+}
+#header h1 {
+    color: white;
+}
+
+#header h2 {
+    color: white;
+    font-style: italic;
+    font-size: 100%;
+    margin: 1px;
+    border: none;
+}
+
+div.box {
+	border-radius: 12px;
+    -moz-border-radius: 12px; /* CSS3 for older Mozilla */
+    -webkit-border-radius: 12px; /* CSS3 for Safari */
+    background: #f6f6f6;
+}
+
+table.files, table#projects {
+    border: #ca9c4d;
+}
+
+table#projects td {
+    -moz-border-radius: 5px; /* CSS3 for Mozilla */
+    -webkit-border-radius: 5px; /* CSS3 for Safari */
+}
+
+body table.files td:hover, table.files th:hover, table#projects td:hover {
+    background: #eee;
+}
+
+table.files td {
+    -moz-border-radius: 5px; /* CSS3 for Mozilla */
+    -webkit-border-radius: 5px; /* CSS3 for Safari */
+}
+
+table.files thead th {
+    background: #cbcbcb;
+    -moz-border-radius: 5px; /* CSS3 for Mozilla */
+    -webkit-border-radius: 5px; /* CSS3 for Safari */
+}
+
+table.files td.actions {
+    background: #eee;
+    text-align: center;
+}
+
+.parameters table th, #parameters table  td {
+  border-bottom:  1px solid #e1e1e1;
+}
+
+.parameters h4 {
+    color: #ac8644;
+    text-decoration: small-caps;  
+    border-bottom:  1px solid #ca9c4d;
+}
+input.start {
+    font-weight: bold;
+    font-size: 160%;
+}
+
+input.uploadbutton {
+    font-weight: bold;
+}
+
+#status p {
+    text-align: center;
+    font-style: italic;
+    color: #434343;
+}
+
+#statuslog td.time {
+    font-size: 80%;
+    font-family: monospace;
+    color: gray;
+}
+#statuslog td.message {
+    font-style: italic;
+}
+
+#progressvalue {
+    background: gray;
+    color: white;
+}
+
+#tabs {
+	background: #E6DCCA;
+}
+
+
+#tabs li.active {
+	background: #cfbf9d;
+	color: white;
+	text-decoration: underline;
+	border:#cfbf9d solid 1px;
+	font-size: 100%;
+}
+
+#tabs li.disabled {
+	background: #bfbfbf;
+	color: white;	
+	border:#bfbfbf solid 1px;
+}
+
+#tabs li {
+	font-size: 90%;
+	border-top-left-radius: 12px;
+	border-top-right-radius: 12px;	
+	border: #cbc3b1 solid 1px;
+	background: #cbc3b1;
+	color: white;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+#tabs a, #tabs a:visited {
+	color: white;
+	text-decoration: none;
+}
+#tabs a:hover {
+	color: #fffeb9;
+	text-decoration: none;
+}
+#status .error {
+	margin: 2px;
+	width: 70%; 
+}
+a {
+	color: #574b32;
+}
+a:visited {
+	color: #6d6450;
+}
+
+input.uploadbutton, input.submitaction {
+	background: #880000;
+	padding: 7px;
+	color: white;
+	font-weight: normal;
+	font-size: 12px;
+}
+
+input#indexbutton, input#abortbutton, input#restartbutton, input#deletebutton {
+	background: #880000;
+	padding: 2px;
+	color: white;
+	font-weight: normal;
+	font-size: 11px;
+	width: 180px;
+	border: none;
+	cursor: pointer;
+}
+input#indexbutton:hover, input#abortbutton:hover, input#restartbutton:hover, input#deletebutton:hover {
+	background: #EE0000;	
+}
+
+input.uploadbutton:hover {
+	background: #AA0000;
+}
+
+div#startbutton input {
+	background: #880000;
+	padding: 14px;
+	color: white;
+	font-weight: bold;
+	font-size: 26px;
+}
+
+div#startbutton input:hover {
+	background: #AA0000;
+}
+div#actionindex p {
+    margin-left: 20px;
+}
+div#actionindex form {
+    margin-left: 30px;
+}
